@@ -1,0 +1,2 @@
+# Whis
+Python Discord Bot
