@@ -1,13 +1,14 @@
 import discord
 import os 
+from discord.message import Message
 import requests
 import json
 import random
 from bs4 import BeautifulSoup 
 from help import getHelpEmbed
 from wiki import getWikiEmbed
-from gpt import getGPTEmbed
-# from news import getNewsEmbeds
+from genAI import getAIEmbed
+from news import getNewsEmbeds
 
 
 intents = discord.Intents.default()
@@ -32,16 +33,16 @@ async def on_message(message):
     await message.channel.send('Hello!')
 
   if content.startswith('!help'):
-    await message.channel.send(embed=getHelpEmbed(message))
+    await message.channel.send(embed = getHelpEmbed(message))
 
   if content.startswith('!wiki'):
-    await message.channel.send(embed=getWikiEmbed(message))
+    await message.channel.send(embed = getWikiEmbed(message))
 
   WhisPrefix = ('Whis','!whis','!Whis','whis')
   if content.startswith(WhisPrefix):
-    await message.channel.send(embed=getGPTEmbed(message))
+    await message.channel.send(embed = getAIEmbed(message))
 
-  if message.content.startswith('$news') :
-    await message.channel.send(embed=getNewsEmbeds())
+  if message.content.startswith('!news') :
+    for embed in getNewsEmbeds(): await message.channel.send(embed = embed)
 
 client.run(os.environ['DISCORD_KEY'])
