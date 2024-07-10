@@ -1,6 +1,7 @@
 import discord
 import requests
 from bs4 import BeautifulSoup 
+import random
 
 
 TOTAL_NEWS = 5
@@ -30,13 +31,16 @@ def getNewsEmbeds() :
   
   embeds = []
   headlines, images, descriptions, links = news()
+  totalResponses = len(headlines)
   
   for i in range(TOTAL_NEWS):
-    embed = discord.Embed(title=headlines[i],
-                          color=discord.Color(value=int("c40831",16)),
-                          url= links[i])
-    embed.set_image(url=images[i])
-    embed.add_field(name="Description", value=descriptions[i], inline=False)
+    index = random.randint(0, totalResponses-1)
+     
+    embed = discord.Embed(title = headlines[index],
+                          color = discord.Color.from_rgb(0, 153, 255),
+                          url = links[index])
+    embed.set_image(url=images[index])
+    embed.add_field(name="Description", value=descriptions[index], inline=False)
     embeds.append(embed)
 
   return embeds

@@ -10,44 +10,27 @@ from replit import db
 import requests
 
 def aiResponse(query) :
-  url = "https://gemini-pro-ai.p.rapidapi.com/"
-  print()
-  payload = { "contents": [
-      {
-        "role": "user",
-        "parts": [{ "text": db["gpt"]["role"]+" "+query }]
-      }
-    ] 
-  }
 
-  # for gpt implementation
-  # gptMessage = {}
-  # gptMessage['content'] = query
+  url = "https://chat-gpt-3-5-turbo2.p.rapidapi.com/"
 
-
-  # for key in db["gpt"]:
-  #   if key == "role":
-  #     gptMessage['role'] = db["gpt"][key]
-  #     continue 
-  #   payload[key] = db["gpt"][key]
-
-  # payload["messages"] = [gptMessage]
+  querystring = {"question": db['gpt']['role']+' '+query}
 
   headers = {
     "x-rapidapi-key": os.getenv('RAPID_API_KEY'),
-    "x-rapidapi-host": os.getenv('GEMINI_HOST'),
-    "Content-Type": "application/json"
+    "x-rapidapi-host": os.getenv('GPT_3.5_HOST')
   }
-  response = requests.post(url, json=payload, headers=headers)
-  print(query, response.json())
-  return response.json()["candidates"][0]["content"]["parts"][0]["text"]
+
+  response = requests.get(url, headers=headers, params=querystring)
+  
+  return response.json()['answer']
+
 
 def getAIEmbed(message) :
   query = " ".join(message.content.split(" ")[1:])
   response = aiResponse(query)
   
   embed = discord.Embed(title="Whis replies",
-                        color=discord.Color(value=int("9e0505",16)))
+                        color=discord.Color.from_rgb(153, 0, 255))
 
   #since total Embed limit is 6000, we will safecode our response 500 characters and since gpt is noded to reply within 200 words, it should exceed our limit 
   fields = 0

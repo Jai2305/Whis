@@ -3,7 +3,7 @@ from replit import db
 # for key in db.keys():
 #   del db[key]
 
-# dict_command={
+# commands={
 #   "COVID":"This command lets u know about the current covid situation in any country \n Format - $COVID Country: <name>",
   
 #   "wiki":"This commands lets u search wiki for the query u mentioned \n Format - $wiki <query>",
@@ -23,6 +23,7 @@ from replit import db
 #   "w3s":"returns academic information given by w3school.com on a subject. \n Format: $w3s <subject> (will return list of topics related to the particular subject) .\n Format: $w3s <subject> > <topic> will return information on that particular topic "
 #   }
 
+# db["commands"] = commands
 # for key,value in dict_command.items():
 #   db[key]=value
 
@@ -35,7 +36,7 @@ from replit import db
 #        "web_access": False
 #       }
 
-# db["gpt"]["role"] = 'Your name is Whis, you are a great computer science teacher and you assist people with their programming related queries by replying in no more than 200 words, you include coding examples whenever necesarry, If multiple questions are asked in the same query then you will give answers to all of them in 30 words or less'
+# db["gpt"]["role"] = 'Your name is Whis, you are a great computer science teacher and you assist people with their programming related queries in a simple and concise way in no more than 200 words, you include coding examples whenever necesarry, If multiple questions are asked in the same query then you will give answers to all of them in 50 words or less...'
 # print(db["gpt"]["role"])
 
 # for key in db["gpt"]:

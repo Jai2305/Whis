@@ -11,6 +11,7 @@ beautifulsoup4 = "^4.12.3"
 ddns = "^3.0.2"
 requests = "^2.32.3"
 replit = "^4.0.0"
+flask = "^3.0.3"
 
 [tool.pyright]
 # https://github.com/microsoft/pyright/blob/main/docs/configuration.md
