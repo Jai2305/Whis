@@ -6,13 +6,15 @@ import json
 import random
 from bs4 import BeautifulSoup 
 
+
 # All functionalities of the bot
+from run import running
 from help import getHelpEmbed
 from wiki import getWikiEmbed
 from genAI import getAIEmbed
-from news import getNewsEmbeds
-from run import running
 from gif import getGIFEmbed
+from news import getNewsEmbeds
+from gfg import getGFGEmbed
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -51,6 +53,9 @@ async def on_message(message):
       
   elif message.content.startswith('!gif') :
     await message.channel.send(embed = getGIFEmbed(message))
+
+  elif message.content.startswith('!gfg') :
+    await message.channel.send(embed = getGFGEmbed(message))
 
 running()
 client.run(os.environ['DISCORD_KEY'])

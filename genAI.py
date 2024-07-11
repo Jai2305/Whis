@@ -32,7 +32,8 @@ def getAIEmbed(message) :
   embed = discord.Embed(title="Whis replies",
                         color=discord.Color.from_rgb(153, 0, 255))
 
-  #since total Embed limit is 6000, we will safecode our response 500 characters and since gpt is noded to reply within 200 words, it should exceed our limit 
+  #since total Embed limit is 6000, we will safecode our response 500 characters and since AI is trained to reply within 200 words, it should not exceed our limit 
+  
   fields = 0
   while(fields < 5):
     fromIndex = fields*1023

@@ -7,19 +7,15 @@ from bs4 import BeautifulSoup
 
 def gif(query) :
 
-  url = "https://giphy.com/search/"+query
+  url = "https://tenor.com/search/"+query
 
   response = requests.get(url)
   soup = BeautifulSoup(response.text, "html.parser")
-  print(soup)
 
-  container = soup.findAll('div',{'class':'giphy-grid'})
-  # pictures = container.findAll('image')
-  # imgURLs = [picture['src'] for picture in pictures]
+  gifs = soup.findAll('div',{'class':'Gif'})
+  urls = [gif.find('img')['src'] for gif in gifs]
 
-  print(container, end="\n")
-
-  # return imgURLs, len(imgURLs)
+  return urls, len(urls)
   
 def getGIFEmbed(message) :
   req = message.content.split("!gif")[1]
