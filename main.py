@@ -1,11 +1,11 @@
 import discord
 import os 
 from discord.message import Message
-
+from src.redis import executeRedis
 
 # All functionalities of the bot
 from src.run import running
-from src.help import getHelpEmbed
+from src.helpRedis import getHelpEmbed
 from src.wiki import getWikiEmbed
 from src.genAI import getAIEmbed
 from src.gif import getGIFEmbed
@@ -20,6 +20,7 @@ client = discord.Client(intents=intents)
 
 @client.event
 async def on_ready():
+  executeRedis()
   print("Hello")
 
 @client.event

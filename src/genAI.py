@@ -4,16 +4,18 @@ import os
 import discord
 from discord.embeds import Embed
 import requests
+# from replit import db
+import redis 
 
-from replit import db
-
-import requests
 
 def aiResponse(query) :
 
   url = "https://chat-gpt-3-5-turbo2.p.rapidapi.com/"
 
-  querystring = {"question": db['gpt']['role']+' '+query}
+  r = redis.StrictRedis.from_url(os.getenv('REDIS_URL'))
+
+
+  querystring = {"question": r.hget("ai","role").decode('utf-8')+' '+query}
 
   headers = {
     "x-rapidapi-key": os.getenv('RAPID_API_KEY'),

@@ -3,9 +3,6 @@ import discord
 from discord.embeds import Embed
 import requests
 from bs4 import BeautifulSoup 
-from replit import db
-
-import requests
 
 
 MAIN_URL = 'https://www.geeksforgeeks.org/'

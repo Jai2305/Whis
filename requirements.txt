@@ -2,3 +2,4 @@ discord
 requests
 beautifulsoup4
 Flask
+redis
