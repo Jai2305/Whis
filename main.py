@@ -1,20 +1,16 @@
 import discord
 import os 
 from discord.message import Message
-import requests
-import json
-import random
-from bs4 import BeautifulSoup 
 
 
 # All functionalities of the bot
-from run import running
-from help import getHelpEmbed
-from wiki import getWikiEmbed
-from genAI import getAIEmbed
-from gif import getGIFEmbed
-from news import getNewsEmbeds
-from gfg import getGFGEmbed
+from src.run import running
+from src.help import getHelpEmbed
+from src.wiki import getWikiEmbed
+from src.genAI import getAIEmbed
+from src.gif import getGIFEmbed
+from src.news import getNewsEmbeds
+from src.gfg import getGFGEmbed
 
 intents = discord.Intents.default()
 intents.message_content = True
