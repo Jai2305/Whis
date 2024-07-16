@@ -1,6 +1,4 @@
 discord
 requests
 beautifulsoup4
-json
 Flask
-threading
