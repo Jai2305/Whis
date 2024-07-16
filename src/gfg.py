@@ -27,15 +27,12 @@ def getTopics():
 def getGFGEmbed(message):
 
   request = message.content.split(">")
-  print(request)
-  print(len(request))
   
   embed = discord.Embed(title="GeeksforGeeks", 
                         color = discord.Color.from_rgb(0, 153, 51),
                         url = MAIN_URL)
   if len(request) == 1: 
     topics = getTopics()
-    print(topics)
     for topic in topics:
       
       urlEmbededTopic = f"[{topic[0]}]({topic[1]})"
