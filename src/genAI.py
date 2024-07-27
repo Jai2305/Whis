@@ -10,21 +10,27 @@ import redis
 
 def aiResponse(query) :
 
-  url = "https://chat-gpt-3-5-turbo2.p.rapidapi.com/"
-
+  url = "https://chatgpt-42.p.rapidapi.com/chatgpt"
   r = redis.StrictRedis.from_url(os.getenv('REDIS_URL'))
 
-
-  querystring = {"question": r.hget("ai","role").decode('utf-8')+' '+query}
-
+  payload = {
+    "messages": [
+      {
+        "role": r.hget("ai","role").decode('utf-8'),
+        "content": query
+      }
+    ],
+    "web_access": False
+  }
   headers = {
     "x-rapidapi-key": os.getenv('RAPID_API_KEY'),
-    "x-rapidapi-host": os.getenv('GPT_3.5_HOST')
+    "x-rapidapi-host": os.getenv('GPT_4.0_HOST'),
+    "Content-Type": "application/json"
   }
 
-  response = requests.get(url, headers=headers, params=querystring)
-  
-  return response.json()['answer']
+  response = requests.post(url, json=payload, headers=headers)
+
+  return response.json()['result']
 
 
 def getAIEmbed(message) :
