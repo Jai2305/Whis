@@ -19,8 +19,8 @@ def news():
                for newsCard in newsCards]
   descriptions = [newsCard.find('p', {'data-testid': 'card-description'}).text 
                   for newsCard in newsCards]
-  images = [newsCard.find('img', {'class':'sc-13b8515c-0 hbOWRP'})['src'] 
-            for newsCard in newsCards]
+  images = [newsCard.find('div', {'data-testid': 'card-media'})
+                .findAll('img')[1]['src'] for newsCard in newsCards]
   links = [url_base+newsCard.find('a',  {'data-testid': 'internal-link'})['href'] 
            for newsCard in newsCards]
 
